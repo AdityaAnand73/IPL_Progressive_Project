@@ -11,7 +11,7 @@ import com.wecp.progressive.service.CricketerService;
 
 public class CricketerServiceImplArraylist implements CricketerService {
 
-    List<Cricketer> cricketers = new ArrayList<>();
+    private static List<Cricketer> cricketers = new ArrayList<>();
 
     @Override
     public List<Cricketer> getAllCricketers() {
@@ -27,8 +27,8 @@ public class CricketerServiceImplArraylist implements CricketerService {
     @Override
     public List<Cricketer> getAllCricketersSortedByExperience() {
         List<Cricketer> c = cricketers;
-        // c.sort(Comparator.comparing(Cricketer::getExperience));
-        Collections.sort(c);
+        c.sort(Comparator.comparing(Cricketer::getExperience));
+        // Collections.sort(c);
         return c;
     }
 

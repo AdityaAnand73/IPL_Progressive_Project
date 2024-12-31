@@ -11,7 +11,8 @@ import com.wecp.progressive.service.TeamService;
 
 public class TeamServiceImplArraylist implements TeamService {
 
-    List<Team> teams = new ArrayList<>();
+    private static List<Team> teams = new ArrayList<>();
+
 
     @Override
     public List<Team> getAllTeams() {
@@ -27,8 +28,8 @@ public class TeamServiceImplArraylist implements TeamService {
     @Override
     public List<Team> getAllTeamsSortedByName() {
         List<Team> t = teams;
-        t.sort(Comparator.comparing(Team::getTeam_name));
-        Collections.sort(t);
+        t.sort(Comparator.comparing(Team::getTeamName));
+        //Collections.sort(t);
         return t;
     }
 
