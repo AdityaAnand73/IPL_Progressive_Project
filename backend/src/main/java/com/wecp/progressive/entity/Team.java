@@ -89,11 +89,9 @@ public class Team implements Comparable<Team> {
         this.establishmentYear = establishmentYear;
     }
 
-
-
     @Override
-    public int compareTo(Team o) {
-        return this.getTeamName().compareTo(o.getTeamName());
+    public int compareTo(Team otherTeam) {
+        return this.getTeamName().compareTo(otherTeam.getTeamName());
     }
 
     

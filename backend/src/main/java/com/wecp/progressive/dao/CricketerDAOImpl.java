@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.wecp.progressive.entity.Cricketer;
@@ -14,7 +15,7 @@ public class CricketerDAOImpl implements CricketerDAO {
 
     @Override
     public int addCricketer(Cricketer cricketer) throws SQLException{
-        // TODO Auto-generated method stub
+
         Connection conn = null;
         PreparedStatement statement = null;
         int generatedID = -1;
@@ -88,11 +89,11 @@ public class CricketerDAOImpl implements CricketerDAO {
     public void updateCricketer(Cricketer cricketer) throws SQLException {
         Connection conn = null;
         PreparedStatement statement = null;
-        ResultSet rs = null;
+    
 
         try{
             conn = DatabaseConnectionManager.getConnection();
-            String sql = "UPDATE cricketer SET team_id = ? , cricketer_name = ? , age =? , nationality=?, experience = ?, role=?, total_runs=? total_wickets = ? WHERE cricketer_id = ?";
+            String sql = "UPDATE cricketer SET team_id = ? , cricketer_name = ? , age =? , nationality=?, experience = ?, role=?, total_runs=? ,total_wickets = ? WHERE cricketer_id = ?";
             statement = conn.prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS);
             statement.setDouble(1, cricketer.getTeamId());
             statement.setString(2, cricketer.getCricketerName());
@@ -115,15 +116,62 @@ public class CricketerDAOImpl implements CricketerDAO {
     }
 
     @Override
-    public void deleteCricketer(int cricketerId) {
-
+    public void deleteCricketer(int cricketerId) throws SQLException {
+        Connection connection = null;
+        PreparedStatement statement = null;
+ 
+        try {
+            connection = DatabaseConnectionManager.getConnection();
+            String sql = "DELETE FROM cricketer WHERE cricketer_id = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, cricketerId);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e; // Rethrow the exception
+        } finally {
+            if (connection != null) {
+                connection.close();
+            }
+        }
     }
 
-    @Override
-    public List<Cricketer> getAllCricketers() {
-        // TODO Auto-generated method stub
-        return List.of();
+   @Override
+    public List<Cricketer> getAllCricketers() throws SQLException {
+        List<Cricketer> cricketers = new ArrayList<>();
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+ 
+        try {
+            connection = DatabaseConnectionManager.getConnection();
+            String sql = "SELECT * FROM cricketer";
+            statement = connection.prepareStatement(sql);
+            resultSet = statement.executeQuery();
+ 
+            while (resultSet.next()) {
+                int cricketerId = resultSet.getInt("cricketer_id");
+                int teamId = resultSet.getInt("team_id");
+                String cricketerName = resultSet.getString("cricketer_name");
+                int age = resultSet.getInt("age");
+                String nationality = resultSet.getString("nationality");
+                int experience = resultSet.getInt("experience");
+                String role = resultSet.getString("role");
+                int totalRuns = resultSet.getInt("total_runs");
+                int totalWickets = resultSet.getInt("total_wickets");
+                cricketers.add(new Cricketer(cricketerId, teamId, cricketerName, age, nationality, experience, role, totalRuns, totalWickets));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e; // Rethrow the exception
+        } finally {
+            if (connection != null) {
+                connection.close();
+            }
+        }
+        return cricketers;
     }
+ 
 
 
 }

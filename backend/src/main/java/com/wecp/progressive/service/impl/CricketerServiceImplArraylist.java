@@ -11,29 +11,30 @@ import com.wecp.progressive.service.CricketerService;
 
 public class CricketerServiceImplArraylist implements CricketerService {
 
-    private static List<Cricketer> cricketers = new ArrayList<>();
+    private static List<Cricketer> cricketerList = new ArrayList<>();
 
     @Override
     public List<Cricketer> getAllCricketers() {
-        return cricketers;
+        return cricketerList;
     }
 
     @Override
     public Integer addCricketer(Cricketer cricketer) {
-        cricketers.add(cricketer);
-        return cricketers.size();
+        cricketerList.add(cricketer);
+        return cricketerList.size();
     }
 
     @Override
     public List<Cricketer> getAllCricketersSortedByExperience() {
-        List<Cricketer> c = cricketers;
-        c.sort(Comparator.comparing(Cricketer::getExperience));
+        List<Cricketer> sortedCricketer = cricketerList;
+        sortedCricketer.sort(Comparator.comparing(Cricketer::getExperience));
         // Collections.sort(c);
-        return c;
+        return sortedCricketer;
     }
 
+    @Override
     public void emptyArrayList(){
-        cricketers = new ArrayList<>();
+        cricketerList = new ArrayList<>();
     }
 
 }
