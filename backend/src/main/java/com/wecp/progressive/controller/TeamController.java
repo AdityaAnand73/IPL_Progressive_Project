@@ -31,30 +31,56 @@ public class TeamController {
    
     @GetMapping
     public ResponseEntity<List<Team>> getAllTeams() {
-        return null;
+        try{
+            List<Team> teamList = teamServiceImplJpa.getAllTeams();
+            return new ResponseEntity<>(teamList, HttpStatus.OK);
+         }catch(SQLException e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+         }
        
     }
  
     @GetMapping("/{teamID}")
     public ResponseEntity<Team> getTeamById( @PathVariable int teamId) throws SQLException {
-        return null;
+        try{
+            Team team = teamServiceImplJpa.getTeamById(teamId);
+            return new ResponseEntity<>(team, HttpStatus.OK);
+        }catch(SQLException e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
        
     }
  
     @PostMapping
     public ResponseEntity<Integer> addTeam(@RequestBody Team team) {
-        return null;
+        try{
+            int teamId = teamServiceImplJpa.addTeam(team);
+            return new ResponseEntity<>(teamId, HttpStatus.CREATED);
+        }catch(SQLException e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
        
     }
  
     @PutMapping("/{teamID}")
     public ResponseEntity<Void> updateTeam(@PathVariable int teamId, @RequestBody Team team) {
-        return new ResponseEntity<Void>(HttpStatus.OK);
+        try{
+            team.setTeamId(teamId);
+            teamServiceImplJpa.updateTeam(team);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }catch(SQLException e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
  
     @DeleteMapping("/{teamID}")
     public ResponseEntity<Void> deleteTeam(@PathVariable int teamId) {
-        return new ResponseEntity<Void>(HttpStatus.OK);
+        try{
+            teamServiceImplJpa.deleteTeam(teamId);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }catch(SQLException e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
     @GetMapping("/fromArrayList")
     public ResponseEntity<List<Team>> getAllTeamsFromArrayList() {

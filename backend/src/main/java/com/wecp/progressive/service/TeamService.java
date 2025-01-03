@@ -13,7 +13,7 @@ public interface TeamService {
 
     List<Team> getAllTeamsSortedByName()throws SQLException;
 
-    default void emptyArrayList() {
+    default void emptyArrayList() throws SQLException{
     }
 
     //Do not implement these methods in TeamServiceImplArrayList.java class
