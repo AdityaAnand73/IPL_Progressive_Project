@@ -26,7 +26,7 @@ public class Match {
     @JoinColumn(name = "second_team_id")
     private Team secondTeam;
 
-    @Temporal(TemporalType.DATE)
+    // @Temporal(TemporalType.DATE)
     private Date matchDate;
 
     private String venue;

@@ -19,11 +19,11 @@ public class TeamServiceImplJpa  implements TeamService {
 
     private TeamRepository teamRepository;
 
-    @Autowired
-    CricketerRepository cricketerRepository;
+    // @Autowired
+    // CricketerRepository cricketerRepository;
 
-    @Autowired
-    MatchRepository matchRepository;
+    // @Autowired
+    // MatchRepository matchRepository;
 
     @Autowired
     public TeamServiceImplJpa(TeamRepository teamRepository) {
@@ -59,8 +59,8 @@ public class TeamServiceImplJpa  implements TeamService {
 
     @Override
     public void deleteTeam(int teamId) throws SQLException {
-        matchRepository.deleteByTeamId(teamId);
-        cricketerRepository.deleteByTeamId(teamId);
+        // matchRepository.deleteByTeamId(teamId);
+        // cricketerRepository.deleteByTeamId(teamId);
         teamRepository.deleteById(teamId);
     }
 }

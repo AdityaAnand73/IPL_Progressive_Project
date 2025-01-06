@@ -9,7 +9,7 @@ import javax.persistence.Id;
 public class Team implements Comparable<Team>{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer teamId;
+    private int teamId;
     private String teamName;
     private String location;
     private String ownerName;
