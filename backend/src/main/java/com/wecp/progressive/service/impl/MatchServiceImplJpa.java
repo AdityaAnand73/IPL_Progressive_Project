@@ -9,12 +9,16 @@ import org.springframework.stereotype.Service;
 import com.wecp.progressive.entity.Match;
 import com.wecp.progressive.exception.NoMatchesFoundException;
 import com.wecp.progressive.repository.MatchRepository;
+import com.wecp.progressive.repository.TicketBookingRepository;
 import com.wecp.progressive.service.MatchService;
 
 @Service
 public class MatchServiceImplJpa implements MatchService {
 
     private MatchRepository matchRepository;
+
+    @Autowired
+    private TicketBookingRepository ticketBookingRepository;
 
     @Autowired
     public MatchServiceImplJpa(MatchRepository matchRepository) {
@@ -43,6 +47,7 @@ public class MatchServiceImplJpa implements MatchService {
 
     @Override
     public void deleteMatch(int matchId) throws SQLException {
+        ticketBookingRepository.deleteByMatchId(matchId);
         matchRepository.deleteById(matchId);
     }
 
