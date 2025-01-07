@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.wecp.progressive.dao.TeamDAO;
 import com.wecp.progressive.entity.Team;
+import com.wecp.progressive.exception.TeamAlreadyExistsException;
+import com.wecp.progressive.exception.TeamDoesNotExistException;
 import com.wecp.progressive.repository.CricketerRepository;
 import com.wecp.progressive.repository.MatchRepository;
 import com.wecp.progressive.repository.TeamRepository;
@@ -19,11 +21,11 @@ public class TeamServiceImplJpa  implements TeamService {
 
     private TeamRepository teamRepository;
 
-    // @Autowired
-    // CricketerRepository cricketerRepository;
+    @Autowired
+    CricketerRepository cricketerRepository;
 
-    // @Autowired
-    // MatchRepository matchRepository;
+    @Autowired
+    MatchRepository matchRepository;
 
     @Autowired
     public TeamServiceImplJpa(TeamRepository teamRepository) {
@@ -37,6 +39,10 @@ public class TeamServiceImplJpa  implements TeamService {
 
     @Override
     public int addTeam(Team team) throws SQLException {
+
+        if(teamRepository.findByTeamName(team.getTeamName()) != null){
+            throw new TeamAlreadyExistsException("Team with same name exists");
+        }
         return teamRepository.save(team).getTeamId();
     }
 
@@ -49,18 +55,24 @@ public class TeamServiceImplJpa  implements TeamService {
 
     @Override
     public Team getTeamById(int teamId) throws SQLException {
+        if(teamRepository.findByTeamId(teamId) == null){
+            throw new TeamDoesNotExistException("Team does not exist");
+        }
         return teamRepository.findByTeamId(teamId);
     }
 
     @Override
     public void updateTeam(Team team) throws SQLException {
+        if(teamRepository.findByTeamName(team.getTeamName()) != null){
+            throw new TeamAlreadyExistsException("Team with same name exists");
+        }
         teamRepository.save(team);
     }
 
     @Override
     public void deleteTeam(int teamId) throws SQLException {
-        // matchRepository.deleteByTeamId(teamId);
-        // cricketerRepository.deleteByTeamId(teamId);
+        matchRepository.deleteByTeamId(teamId);
+        cricketerRepository.deleteByTeamId(teamId);
         teamRepository.deleteById(teamId);
     }
 }

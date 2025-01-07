@@ -1,6 +1,7 @@
 package com.wecp.progressive.controller;
 
 import com.wecp.progressive.entity.Match;
+import com.wecp.progressive.exception.NoMatchesFoundException;
 import com.wecp.progressive.service.impl.MatchServiceImplJpa;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,7 +82,10 @@ public class MatchController {
         try {
             List<Match> matchList = matchServiceImplJpa.getAllMatchesByStatus(status);
             return new ResponseEntity<>(matchList, HttpStatus.OK);
-        } catch (SQLException e) {
+        }catch(NoMatchesFoundException n){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } 
+        catch (SQLException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

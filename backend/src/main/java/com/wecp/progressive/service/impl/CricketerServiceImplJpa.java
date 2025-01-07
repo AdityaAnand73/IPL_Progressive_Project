@@ -8,13 +8,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wecp.progressive.entity.Cricketer;
+import com.wecp.progressive.exception.TeamCricketerLimitExceededException;
 import com.wecp.progressive.repository.CricketerRepository;
+import com.wecp.progressive.repository.VoteRepository;
 import com.wecp.progressive.service.CricketerService;
 
 @Service
 public class CricketerServiceImplJpa implements CricketerService {
 
     private CricketerRepository cricketerRepository;
+
+    private VoteRepository voteRepository;
 
     @Autowired
     public CricketerServiceImplJpa(CricketerRepository cricketerRepository) {
@@ -28,6 +32,11 @@ public class CricketerServiceImplJpa implements CricketerService {
 
     @Override
     public Integer addCricketer(Cricketer cricketer) throws SQLException {
+        int noOfCricketers = cricketerRepository.findAll().size();
+        if(noOfCricketers >= 11)
+        {
+            throw new TeamCricketerLimitExceededException("already 11 cricekters");
+        }
         return cricketerRepository.save(cricketer).getCricketerId();
     }
 
@@ -46,6 +55,7 @@ public class CricketerServiceImplJpa implements CricketerService {
     @Override
     public void deleteCricketer(int cricketerId) throws SQLException {
         cricketerRepository.deleteById(cricketerId);
+        voteRepository.deleteByCricketerId(cricketerId);
     }
 
     @Override
