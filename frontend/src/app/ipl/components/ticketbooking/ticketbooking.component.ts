@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TicketBooking } from '../../types/TicketBooking';
@@ -40,4 +41,9 @@ export class TicketBookingComponent implements OnInit {
   resetForm(): void {
     this.ticketBookingForm.reset();
   }
+=======
+
+export class TicketBookingComponent {
+
+>>>>>>> 223324dc07b45aab6ad765574a36f47daf7e3f8d
 }

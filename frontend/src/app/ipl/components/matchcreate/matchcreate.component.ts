@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Component } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { OnInit } from "@angular/core";
@@ -56,5 +57,10 @@ export class MatchCreateComponent implements OnInit{
     // });
     this.matchForm.reset();
   }
+=======
+
+export class MatchCreateComponent {
+ 
+>>>>>>> 223324dc07b45aab6ad765574a36f47daf7e3f8d
 
 }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Cricketer } from "../../types/Cricketer";
@@ -55,4 +56,9 @@ export class CricketerCreateComponent implements OnInit {
       totalWickets:''
     });
   }
+=======
+
+export class CricketerCreateComponent {
+
+>>>>>>> 223324dc07b45aab6ad765574a36f47daf7e3f8d
 }
