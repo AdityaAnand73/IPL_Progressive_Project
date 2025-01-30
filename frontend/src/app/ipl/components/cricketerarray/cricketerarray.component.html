@@ -1,0 +1,18 @@
+<div *ngIf="showCricketers">
+    <ul>
+        <li *ngFor="let cricketer of crickters">
+            <h3>{{ cricketer.cricketerName }} ({{ cricketer.age }} years old)</h3>
+            <p>Nationality: {{ cricketer.nationality }}</p>
+            <p>Role: {{ cricketer.role }}</p>
+            <p>Total runs: {{ cricketer.totalRuns }}</p>
+            <p>Total Wickets: {{ cricketer.totalWickets }}</p>
+            <p>Experience: {{ cricketer.experience }} years</p>
+            <p>Team ID: {{ cricketer.teamId }}</p>
+        </li>
+    </ul>
+
+    <div *ngIf="cricketers.length === 0">
+        <p>No cricketers available to display.</p>
+    </div>
+</div>
+
