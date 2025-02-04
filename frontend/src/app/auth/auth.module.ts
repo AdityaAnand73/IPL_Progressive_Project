@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
 import { AuthRoutingModule } from "./auth-routing.module";
+<<<<<<< HEAD
 
 import { HttpClientModule } from "@angular/common/http";
 import { ReactiveFormsModule } from "@angular/forms";
@@ -13,6 +14,13 @@ import { RegistrationComponent } from "./components/registration/registration.co
     LoginComponent,
     RegistrationComponent
   ],
+=======
+import { ReactiveFormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
+
+@NgModule({
+  declarations: [],
+>>>>>>> f65cd762c3d8b4c3e171215dd01fc22913fc6d3a
   imports: [
     CommonModule,
     AuthRoutingModule,

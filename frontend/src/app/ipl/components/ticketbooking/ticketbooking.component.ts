@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> f65cd762c3d8b4c3e171215dd01fc22913fc6d3a
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TicketBooking } from '../../types/TicketBooking';
@@ -40,4 +44,12 @@ export class TicketBookingComponent implements OnInit {
   resetForm(): void {
     this.ticketBookingForm.reset();
   }
+<<<<<<< HEAD
+=======
+=======
+
+export class TicketBookingComponent {
+
+>>>>>>> 223324dc07b45aab6ad765574a36f47daf7e3f8d
+>>>>>>> f65cd762c3d8b4c3e171215dd01fc22913fc6d3a
 }

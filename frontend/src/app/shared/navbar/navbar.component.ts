@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -22,3 +23,11 @@ export class NavBarComponent implements OnInit {
     }
 
 }
+=======
+
+export class NavBarComponent{
+
+  
+
+}
+>>>>>>> f65cd762c3d8b4c3e171215dd01fc22913fc6d3a

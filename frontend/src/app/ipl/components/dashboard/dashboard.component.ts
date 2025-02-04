@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Component, OnInit } from "@angular/core";
 import { Team } from "../../types/Team";
 import { Cricketer } from "../../types/Cricketer";
@@ -39,5 +40,10 @@ export class DashboardComponent implements OnInit {
             this.matches = matches;
         });
     }
+=======
+
+export class DashboardComponent  {
+ 
+>>>>>>> f65cd762c3d8b4c3e171215dd01fc22913fc6d3a
 
 }

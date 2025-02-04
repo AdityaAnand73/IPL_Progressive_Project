@@ -1,9 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Cricketer } from "../../types/Cricketer";
+<<<<<<< HEAD
 import { Team } from "../../types/Team";
 import { IplService } from "../../services/ipl.service";
 import { HttpErrorResponse } from "@angular/common/http";
+=======
+>>>>>>> f65cd762c3d8b4c3e171215dd01fc22913fc6d3a
 
 @Component({
   selector: 'app-cricketercreate',
@@ -17,6 +20,7 @@ export class CricketerCreateComponent implements OnInit {
   cricketer:Cricketer | null = null;
   successMessage: string | null = null;
   errorMessage: string | null = null;
+<<<<<<< HEAD
   teams: Team[] = []
 
   constructor(private fb: FormBuilder, private iplService: IplService) {}
@@ -25,10 +29,18 @@ export class CricketerCreateComponent implements OnInit {
     this.loadTeams();
     this.cricketerForm = this.fb.group({
       team:[null, Validators.required],
+=======
+
+  constructor(private fb: FormBuilder) {}
+
+  ngOnInit(): void {
+    this.cricketerForm = this.fb.group({
+>>>>>>> f65cd762c3d8b4c3e171215dd01fc22913fc6d3a
       cricketerId: [null, [Validators.required]],
       teamId:[null, [Validators.required,]],
       cricketerName: ['', [Validators.required]],
       age: [null, [Validators.required,Validators.min(18)]],
+<<<<<<< HEAD
       nationality: ['', [Validators.required]],
       experience: [null, [Validators.required,Validators.min(0)]],
       role:['',[Validators.required]],
@@ -40,11 +52,19 @@ export class CricketerCreateComponent implements OnInit {
   loadTeams(): void{
     this.iplService.getAllTeams().subscribe((teams) => {
       this.teams = teams;
+=======
+      nationality: ['', [Validators.required, Validators.minLength(2)]],
+      experience: [null, [Validators.required,Validators.min(1)]],
+      role:['',[Validators.required]],
+      totalRuns:[null,[Validators.required]],
+      totalWickets:[null,[Validators.required]]
+>>>>>>> f65cd762c3d8b4c3e171215dd01fc22913fc6d3a
     });
   }
 
   onSubmit(): void {
     if (this.cricketerForm.valid) {
+<<<<<<< HEAD
       this.iplService.addCricketer(this.cricketerForm.value).subscribe({
         next: (response) => {
           this.cricketer = response;
@@ -59,6 +79,14 @@ export class CricketerCreateComponent implements OnInit {
           this.successMessage = 'Cricketer created successfully!';
         }
       });
+=======
+        this.cricketer = this.cricketerForm.value
+      this.successMessage = 'Cricketer created successfully!';
+      this.errorMessage = null;
+    } else {
+      this.errorMessage = 'Please fill out all required fields correctly.';
+      this.successMessage = null;
+>>>>>>> f65cd762c3d8b4c3e171215dd01fc22913fc6d3a
     }
   }
 
@@ -75,6 +103,7 @@ export class CricketerCreateComponent implements OnInit {
       totalWickets:''
     });
   }
+<<<<<<< HEAD
 
   private handleError(error: HttpErrorResponse): void{
     if(error.error instanceof ErrorEvent){
@@ -88,4 +117,6 @@ export class CricketerCreateComponent implements OnInit {
     this.successMessage = null;
     console.error('An error occured;', this.errorMessage);
   }
+=======
+>>>>>>> f65cd762c3d8b4c3e171215dd01fc22913fc6d3a
 }
