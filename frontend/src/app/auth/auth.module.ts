@@ -2,33 +2,28 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
 import { AuthRoutingModule } from "./auth-routing.module";
-<<<<<<< HEAD
-
-import { HttpClientModule } from "@angular/common/http";
 import { ReactiveFormsModule } from "@angular/forms";
-import { LoginComponent } from "./components/login/login.component";
+import { HttpClientModule } from "@angular/common/http";
 import { RegistrationComponent } from "./components/registration/registration.component";
+import { LoginComponent } from "./components/login/login.component";
+import { LogoutComponent } from "./components/logout/logout.component";
+import { RouterModule } from "@angular/router";
 
 @NgModule({
-  declarations: [
+  declarations: [RegistrationComponent,
     LoginComponent,
-    RegistrationComponent
-  ],
-=======
-import { ReactiveFormsModule } from "@angular/forms";
-import { HttpClientModule } from "@angular/common/http";
+    LogoutComponent
 
-@NgModule({
-  declarations: [],
->>>>>>> f65cd762c3d8b4c3e171215dd01fc22913fc6d3a
+  ],
   imports: [
     CommonModule,
     AuthRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    RouterModule
   ],
   exports: [
-    
+    LogoutComponent
   ]
 })
 export class AuthModule {}
